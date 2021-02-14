@@ -137,14 +137,14 @@ public class StoreSimulation {
         System.out.println("COLLECTED STATISTICS:");
         
         double totalWaitTime = 0;
-        //Average Wait Time Per Customer For The Store
+        //prints the Average Wait Time Per Customer For The Store
         for (int i = 0; i < customerArray.size(); i++) {
             totalWaitTime += customerArray.get(i).getWaitTime();
         }
         System.out.println("Average Waiting Time for Customers in the Store: " + totalWaitTime/customerArray.size());
     }
     private static void printAvgRegWaitTime() {    
-        //Average Waiting Time per Register Style
+        //prints the Average Waiting Time per Register Style
         double standardWaitTime = 0, selfWaitTime = 0;
         int counterStandard = 0, counterSelf = 0;
          for (int i = 0; i < customerArray.size(); i++) {
@@ -161,21 +161,21 @@ public class StoreSimulation {
     }
     
     private static void printRegTotalPassThrough() {
-        //Total Customers Passing Through Each Individual Register Line
+        //prints the Total Customers Passing Through Each Individual Register Line
         for (int i = 0; i < registers.size(); i++){
           System.out.println("Register " + (i+1) + ": Total Customer Pass Through: " + registers.get(i).getTotalPassThru());  
         }
     }
     
     private static void printRegMaxLength() {
-        //Maximum Length of Each Register Line
+        //prints the Maximum Length of Each Register Line
         for (int i = 0; i < registers.size(); i++) {
             System.out.println("Register " + (i+1) + ": Maximum Length of Line: " + registers.get(i).getMaxLength());
         }
     }
 
     private static void printPercentCustomerWaitTime() {    
-        //Percentage of Customers who waited for more than 2, 3, 5, and 10 minutes
+        //prints the Percentage of Customers who waited for more than 2, 3, 5, and 10 minutes
         double counter2m = 0;
         double counter3m = 0;
         double counter5m = 0;
