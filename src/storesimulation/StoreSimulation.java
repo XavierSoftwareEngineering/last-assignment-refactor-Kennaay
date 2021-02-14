@@ -45,7 +45,7 @@ public class StoreSimulation {
  
     }
    
- 
+    // creates new empty registers top load customers into
     private static void loadRegisters() {
         for (int i = 0; i < NUMBER_STANDARD_CHECKOUT; i++) {
             Register r = new Register(0.01, 1.5, "STANDARD");
@@ -57,6 +57,7 @@ public class StoreSimulation {
         }
     }
  
+    //loads in the "arrival" text document containing the customer data for the simulation
     private static void loadCustomerData() {
         double arriveTime, avgSelectionTime;
         int items;
@@ -79,6 +80,7 @@ public class StoreSimulation {
         }
     }
  
+    //gets the customer that arrived and calculates their shopping time at the end of their trip
     private static void handleArrival(Event e) {
         Customer c = e.getCustomer();
         double endShoppingTime = c.getArriveTime() + c.getNumItems() * c.getAvgSelectionTime();
@@ -86,6 +88,7 @@ public class StoreSimulation {
         events.insert(endShopping);
     }
  
+    //gets the customer that is readsy to checkout and sorts them into the shortest line
     private static void handleEndShopping(Event e) {
         Customer customer = e.getCustomer();
         int shortest = getShortestLine(customer);
@@ -101,6 +104,7 @@ public class StoreSimulation {
         }
     }
  
+    //dequeues the customer at the front of a checkout line to begin the end of checkout process
     private static void handleEndCheckout(Event e) {
         int line = e.getCustomer().getCheckoutLine();
         Customer c = registers.get(line).dequeue();
@@ -112,7 +116,8 @@ public class StoreSimulation {
             startCheckout(customer);
         }
     }
- 
+    
+    //begins the checkout process for a customer necessary in knowing how long they waited in the line 
     private static void startCheckout(Customer customer) {
         int line = customer.getCheckoutLine();
         customer.setWaitTime(simClock - customer.getStartWaitTime());//calculate & save the waiting time
@@ -122,6 +127,7 @@ public class StoreSimulation {
         events.insert(endCheckout);   
     }
  
+    //print to the console the statistics that were collected during the simulation
     private static void printCollectedStatistics() {
         System.out.println("COLLECTED STATISTICS:");
         
@@ -182,7 +188,7 @@ public class StoreSimulation {
         System.out.println("Percentage of Customers waiting 10 minutes or longer: " + (counter10m/customerArray.size())*100);
     }
  
-   
+   //finb the shortest checkout line
     private static int getShortestLine(Customer c) { // initialize min to the length of the first register object within the arrayList of registers
         int currLeng, min = registers.get(0).getLineLength(), minIndex = 0;
  
