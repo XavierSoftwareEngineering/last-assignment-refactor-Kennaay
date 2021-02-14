@@ -46,7 +46,7 @@ public class StoreSimulation {
         printRegTotalPassThrough();
         printRegMaxLength();
         printPercentCustomerWaitTime();
-        
+        printTotalNumItems();
  
     }
    
@@ -197,6 +197,15 @@ public class StoreSimulation {
         System.out.println("Percentage of Customers waiting 3 minutes or longer: " + (counter3m/customerArray.size())*100);
         System.out.println("Percentage of Customers waiting 5 minutes or longer: " + (counter5m/customerArray.size())*100);
         System.out.println("Percentage of Customers waiting 10 minutes or longer: " + (counter10m/customerArray.size())*100);
+    }
+    
+    private static void printTotalNumItems() {
+        //prints the total number of items scanned in the simulation
+        int items = 0;
+        for (int i = 0; i < customerArray.size(); i++) {
+            items += customerArray.get(i).getNumItems();
+        }
+        System.out.println("Total Number of Items Scanned: " + items);
     }
 
    //finb the shortest checkout line
