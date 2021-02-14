@@ -16,11 +16,13 @@ class MyHeap<T> {
    
     private static final int FRONT = 0;
    
+    //create the heap used to store data
     public MyHeap(){
         this.size = 0;
         Heap = new Event[10000];
     }
    
+    //used to store size variable
     int getSize() {
         return size;
     }
