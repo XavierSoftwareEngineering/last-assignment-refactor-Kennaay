@@ -41,7 +41,12 @@ public class StoreSimulation {
                 handleEndCheckout(e);
             }
         }
-        printCollectedStatistics();
+        printCustomerAvgWaitTime();
+        printAvgRegWaitTime();
+        printRegTotalPassThrough();
+        printRegMaxLength();
+        printPercentCustomerWaitTime();
+        
  
     }
    
@@ -128,7 +133,7 @@ public class StoreSimulation {
     }
  
     //print to the console the statistics that were collected during the simulation
-    private static void printCollectedStatistics() {
+    private static void printCustomerAvgWaitTime() {
         System.out.println("COLLECTED STATISTICS:");
         
         double totalWaitTime = 0;
@@ -137,8 +142,8 @@ public class StoreSimulation {
             totalWaitTime += customerArray.get(i).getWaitTime();
         }
         System.out.println("Average Waiting Time for Customers in the Store: " + totalWaitTime/customerArray.size());
-
-        
+    }
+    private static void printAvgRegWaitTime() {    
         //Average Waiting Time per Register Style
         double standardWaitTime = 0, selfWaitTime = 0;
         int counterStandard = 0, counterSelf = 0;
@@ -153,17 +158,23 @@ public class StoreSimulation {
         }
         System.out.println("Average Standard Register Wait Time: " + standardWaitTime/counterStandard + " minutes.");
         System.out.println("Average Self Register Wait Time: " + selfWaitTime/counterSelf + " minutes.");
-
+    }
+    
+    private static void printRegTotalPassThrough() {
         //Total Customers Passing Through Each Individual Register Line
         for (int i = 0; i < registers.size(); i++){
           System.out.println("Register " + (i+1) + ": Total Customer Pass Through: " + registers.get(i).getTotalPassThru());  
         }
-        
+    }
+    
+    private static void printRegMaxLength() {
         //Maximum Length of Each Register Line
         for (int i = 0; i < registers.size(); i++) {
             System.out.println("Register " + (i+1) + ": Maximum Length of Line: " + registers.get(i).getMaxLength());
         }
-        
+    }
+
+    private static void printPercentCustomerWaitTime() {    
         //Percentage of Customers who waited for more than 2, 3, 5, and 10 minutes
         double counter2m = 0;
         double counter3m = 0;
@@ -187,7 +198,7 @@ public class StoreSimulation {
         System.out.println("Percentage of Customers waiting 5 minutes or longer: " + (counter5m/customerArray.size())*100);
         System.out.println("Percentage of Customers waiting 10 minutes or longer: " + (counter10m/customerArray.size())*100);
     }
- 
+
    //finb the shortest checkout line
     private static int getShortestLine(Customer c) { // initialize min to the length of the first register object within the arrayList of registers
         int currLeng, min = registers.get(0).getLineLength(), minIndex = 0;
