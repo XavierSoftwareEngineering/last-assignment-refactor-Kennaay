@@ -208,7 +208,7 @@ public class StoreSimulation {
         System.out.println("Total Number of Items Scanned: " + items);
     }
 
-   //finb the shortest checkout line
+   //find the shortest checkout line
     private static int getShortestLine(Customer c) { // initialize min to the length of the first register object within the arrayList of registers
         int currLeng, min = registers.get(0).getLineLength(), minIndex = 0;
  
