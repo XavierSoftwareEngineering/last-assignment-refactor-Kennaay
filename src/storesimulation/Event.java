@@ -67,26 +67,32 @@ class Event implements Comparable{
         this.eventType = eventType;
     }
    
+    //used to store the starting time a customer is waiting in line
     public void setStartWaitTime(double i){
         this.startWaitTime = i;
     }
    
+    //used to store the time a customer spent waiting in line
     public void setWaitTime(double i){
         this.waitTime = i;
     }
    
+    //sets the type of register a given customer is in (Standard or Self)
     public void setRegType(String r){
         this.registerType = r;
     }
    
+    //returns the time at which a customer started waiting
     public double getStartWaitTime(){
         return this.startWaitTime;
     }
    
+    //returns the time a customer spent waiting in line
     public double getWaitTime(){
         return this.waitTime;
     }
    
+    //returns the type of register a given customer is at
     public String getRegType(){
         return this.registerType;
     }
